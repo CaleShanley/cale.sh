@@ -12,3 +12,7 @@ header h1 {
   margin: 1rem;
   text-align: center;
 }
+
+form {
+  text-align: center;
+}

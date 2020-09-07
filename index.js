@@ -18,18 +18,17 @@ app.use(helmet())
 app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
-app.use(express.static('./public'))
 
 app.get('/:id', async (req, res) => {
   const { id: slug } = req.params
   try {
-    const url = await urls.fineoNE({ slug })
+    const url = await urls.findOne({ slug })
     if (url) {
-      res.redirect(url.url)
+      return res.json(url)
     }
     res.redirect(`/?error=${slug} not found`)
   } catch (error) {
-    res.redirect(`/?error=Link not found`)
+    res.redirect('/?error=Link not found')
   }
 })
 
